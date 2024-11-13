@@ -10,7 +10,7 @@ switch (choice) {
     console.log(" Burger - 15 Rupees ");
     break;
   case 3:
-    console.log(" Pasta - 50 Ruppes");
+    console.log(" Pasta - 50 Rupees");
     break;
   case 4:
     console.log(" Roll - 35 Rupees");
