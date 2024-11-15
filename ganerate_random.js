@@ -1,0 +1,1 @@
+Math.floor(math.random() * 10 ) + 1;
