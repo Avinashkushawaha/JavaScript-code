@@ -9,8 +9,14 @@ console.log(b)
 // let d = num.pop()
 // console.log(d)
 
-let e = num.push(11)
-console.log(e)
+// let e = num.push(11)
+// console.log(num, e)
+
+// let f = num.shift()
+// console.log( f, num)
+
+let g = num.unshift(11)
+console.log(g, num)
 
 
 
