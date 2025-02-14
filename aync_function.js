@@ -10,12 +10,9 @@ let mumbaiWeather = new Promise((resolve, reject) => {
     }, 2000)
 })
 
-async function Avi() {
-    return 5
-}
 
-Avi().then((x) => {
-    alert(x)
-})
+let delhi = await delhiWeather
+let mumbai = await mumbaiWeather
 
+console.log(delhi, mumbai)
 
