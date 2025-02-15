@@ -10,4 +10,4 @@ accountCity = "Jaipur";
 
 console.log(accountPassword);
 
-console.table([accountId, accountEmail, accountPassword, accountCity]);
+console.table([ accountCity]);
