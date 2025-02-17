@@ -47,8 +47,14 @@ for (const key in myObject) {
 const programming = ["js", "rb", "py", "java", "cpp"]
 
 programming.forEach(function (item) {
-    console.log(item);
+    // console.log(item);
 })
+programming.forEach( (item,index,array) => {
+    console.log(item,index,array);
+})
+
+
+
 
 
 
