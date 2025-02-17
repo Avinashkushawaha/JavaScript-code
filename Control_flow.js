@@ -17,15 +17,36 @@
 //     console.log("balance is negative");
 // }
 
-const userLoggedIn = true;
-const debitCard = true;
+// const userLoggedIn = true;
+// const debitCard = true;
 
-if (userLoggedIn && debitCard) {
-    console.log("Allow to change text");
+// if (userLoggedIn && debitCard) {
+//     console.log("Allow to change text");
+// }
+
+
+
+// const month = 3;
+// switch (month) {
+//     case 1:
+//         console.log("January");
+//         break;
+//     case 2:
+//         console.log("February");
+//         break;
+//     case 3:
+//         console.log("March");
+//         break;
+//     default:
+//         console.log("default case match");
+//         break;
+// } 
+
+
+const userEmail = '0';
+
+if(userEmail){
+    console.log("Got user email");
+} else {
+    console.log("Don't have user email");
 }
-
-
-
-
-
-
