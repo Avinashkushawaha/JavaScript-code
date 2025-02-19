@@ -21,3 +21,26 @@ Object.prototype.Avi = function(){
 
 // heroPower.Avi()
 myHeros.Avi()
+
+
+
+const User = {
+    name: "chai",
+    email: "chai@google.com"
+}
+
+const Teacher = {
+    makeVideo: true
+}
+
+const TeachingSupport = {
+    isAvailable: false
+}
+
+const TASupport = {
+    makeAssignment: 'js Assignment',
+    fullTime: true,
+    __proto__: TeachingSupport
+}
+
+Teacher.__prot__ = User
