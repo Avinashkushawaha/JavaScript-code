@@ -11,12 +11,12 @@ let heroPower = {
 
 
     getSpiderPower: function(){
-        console.log(`Spidy power is ${this.spiderman}`)
+        // console.log(`Spidy power is ${this.spiderman}`)
     }
 }
 
 Object.prototype.Avi = function(){
-    console.log(`Avi is present in all objects`);
+    // console.log(`Avi is present in all objects`);
 }
 
 // heroPower.Avi()
@@ -44,3 +44,18 @@ const TASupport = {
 }
 
 Teacher.__prot__ = User
+
+// modern syntax
+Object.setPrototypeOf(TeachingSupport, Teacher)
+
+let anotherUsername = "ChaiAurCode"
+
+String.prototype.trueLength = function(){
+    console.log(`${this}`);
+    console.log(`${this.name}`);
+    console.log(`True length is${this.trim().length}`);
+}
+
+anotherUsername.trueLength()
+"Avi".trueLength()
+"iceTea".trueLength()
