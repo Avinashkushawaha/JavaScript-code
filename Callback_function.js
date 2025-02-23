@@ -1,4 +1,11 @@
 // what is s cllaback function in javascript?
-function x(){
-    
+function x(y){
+console.log("x");
+y();
 }
+    
+
+
+
+
+
