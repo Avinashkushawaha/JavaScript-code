@@ -20,3 +20,9 @@ function d(func) {
   func();
 }
 d(c);
+
+// arrow function
+var e = () => {
+  console.log('Arrow Function');
+}
+e();
