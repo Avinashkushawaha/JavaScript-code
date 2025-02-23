@@ -14,3 +14,9 @@ b();
 var c = function () {
   console.log('Bye');
 }
+
+// first class function
+function d(func) {
+  func();
+}
+d(c);
