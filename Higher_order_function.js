@@ -7,4 +7,24 @@ const calculateArea = function (radius)  {
     }
     return output;
 };   
-console.table(calculateArea(radius)); // [28.27, 3.14, 12.57, 50.27]
+console.table(calculateArea(radius)); 
+
+const calculateCircumference = function (radius) {
+    const output = [];
+    for (let i = 0; i < radius.length; i++) {
+        output.push(2 * Math.PI * radius[i]);
+    }
+    return output;
+};
+console.log(calculateCircumference(radius));
+
+
+const calculateDiameter = function (radius) {    
+    const output = [];
+    for (let i = 0; i < radius.length; i++) {
+        output.push(2 * radius[i]);
+    }
+    return output;
+};
+console.log(calculateDiameter(radius));
+     
