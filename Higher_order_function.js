@@ -16,7 +16,7 @@ const calculateCircumference = function (radius) {
     }
     return output;
 };
-console.log(calculateCircumference(radius));
+console.table(calculateCircumference(radius));
 
 
 const calculateDiameter = function (radius) {    
@@ -26,5 +26,5 @@ const calculateDiameter = function (radius) {
     }
     return output;
 };
-console.log(calculateDiameter(radius));
+console.table(calculateDiameter(radius));
      
