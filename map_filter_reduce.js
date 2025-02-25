@@ -36,12 +36,19 @@ const user =[
 {firstname: "prem", lastname: "asthana", age: 24},
 ];
 
-const output = user.reduce(function (acc, curr) {
-    if (acc[curr.age]) {
-        acc[curr.age] = ++acc[curr.age];
-    } else {
-        acc[curr.age] = 1;
-    }
-    return acc;
-}, {});
-console.log(output);
+// const output = user.reduce(function (acc, curr) {
+//     if (acc[curr.age]) {
+//         acc[curr.age] = ++acc[curr.age];
+//     } else {
+//         acc[curr.age] = 1;
+//     }
+//     return acc;
+// }, {});
+// console.log(output);
+
+
+const output = user.filter(function (element) {
+    return element.age < 30;
+}); 
+
+console.table(output);
