@@ -41,5 +41,22 @@ function Changed(node1, node2) {
 }
 
 function diffAttributes(oldProps = {}, newProps = {}) {
-    
+    const patches = [];
+
+    const allProps = new Set([...Object.keys(oldProps), ...Object.keys(newProps)]);
+
+   for (const name of allProps){
+    if (name === 'children') continue;
+
+    const oldValue = oldProps[name];
+    const newValue = newProps[name];
+
+    if (!newValue) {
+        patches.push({ type: 'REMOVE_ATTR', name });
+    } else if (!oldValue || oldValue !== newValue) {
+        patches.push({ type: 'SET_ATTR', name, value: newValue });
+    }
+   }
+
+    return patches;
 }
