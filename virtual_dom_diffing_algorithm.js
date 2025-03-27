@@ -60,3 +60,24 @@ function diffAttributes(oldProps = {}, newProps = {}) {
 
     return patches;
 }
+
+const vNode1 = {
+    type: 'div',
+    props: { className: 'container', id: 'app' },
+    children: [
+        { type: 'h1', props:{}, children: ['Hello'] },
+        { type: 'p', props: { style: 'color: red'}, children: ['World'] }
+    ]
+};
+
+const vNode2 = {
+    type: 'div',
+    props: { className: 'container', id: 'app' },
+    children: [
+        { type: 'h1', props:{}, children: ['Hello'] },
+        { type: 'p', props: { style: 'color: blue'}, children: ['World'] },
+        { type: 'button', props: {disabled: true}, children: ['Click me'] }
+    ]
+};
+
+console.log(diff(vNode1, vNode2));
