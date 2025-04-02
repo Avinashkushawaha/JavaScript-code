@@ -27,3 +27,19 @@ class ReactiveStore {
         }
     }
 }
+
+const store = new ReactiveStore ({
+    user :{
+        name: 'Alice',
+        preferences: {
+            theme: 'dark'
+        }
+    }
+});
+
+const unsubscribe = store.subscribe((path, value) => {
+    console.log(`Changed ${path} to ${value}`);
+});
+
+store.update('user,name', 'Bob');
+store.update('user.preference.theme', 'light');
