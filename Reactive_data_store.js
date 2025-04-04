@@ -21,5 +21,25 @@ class ReactiveStore {
             this.notify(path, value);
         }
 
-
+        notify(path, value) {
+            for (const subscriber of this.subscribers) {
+                subscriber({ path, value });
+            }
+        }
     }
+
+    const store = new ReactiveStore({
+        user : {
+            name: 'Alice',
+            preferences: {
+                theme: 'dark'
+            }
+        }
+    });
+
+    const unsubscribe = store.subscribe((path, value) => {
+        console.log(`Path: ${path}, Value: ${value}`);
+    });
+
+    store.update('user.name', 'Bob');
+    store.update('user.preferences.theme', 'light');
