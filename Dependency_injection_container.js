@@ -47,3 +47,11 @@ container.register('apiClient', (container) => {
     };
 });
 
+const client1 = container.resolve('apiClient');
+const client2 = container.resolve('apiClient');
+console.log(client1 === client2);
+
+const logger1 = container.resolve('logger');
+const logger2 = container.resolve('logger');
+console.log(logger1 === logger2)
+
