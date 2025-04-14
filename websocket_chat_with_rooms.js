@@ -60,3 +60,36 @@ function joinRoom(roomName, ws, username) {
     }));
 }
 
+function leaveRoom(roomName, ws) {
+    const room = rooms.get(roomName);
+    if (room) {
+        room.delete(ws);
+
+    if (room.size === 0) {
+        rooms.delete(roomName);
+    }    else{
+        broadcastToRoom(roomName, {
+            type: 'notification',
+            text: 'A user left the room'
+        });
+    }
+
+    }
+}
+
+function broadcastToRoom(roomName, message) {
+    const room = rooms.get(roomName);
+    if (room) {
+        const messageStr = JSON.stringify(message);
+        room.forEach(client =>{
+            if (client.readyState === WebSocket.OPEN){
+                client.send(messageStr);
+            }
+        });
+    }
+}
+
+server.listen(8080, () => {
+    console.log('Chat server running on ws://localhost:8080');
+})
+
