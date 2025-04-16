@@ -37,3 +37,14 @@ class ImageClassifier {
         }));
     }
 }
+
+const classifier = new ImageClassifier();
+const img = document.getElementById('image-to-classify');
+
+async function runClassification(){
+    const loaded = await classifier.load();
+    if (loaded) {
+        const results = await classifier.classify(img);
+        console.log('Classification results:', results);
+    }
+}
