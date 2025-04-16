@@ -42,5 +42,34 @@ import web3 from 'web3';
         }
     }
 
-    async
+    async getBalance(){
+        if(!this.contract) throw new Error('Not connected to contract');
+        return this.contract.methods.getBalance().call({from: this.account });
+    }
+
+    async deposit(amount) {
+        if (!this.contract) throw new Error('Not Connected to contract');
+        const weiAmount = this.web3.utils.toWei(amount.toString(), 'either');
+
+        return this.contract.methods.deposit().send({
+            from: this.account,
+            value: weiAmount
+        });
+    }
+
+    async withdraw(amount) {
+        if (!this.contract) throw new Error('Not connected to contract')
+            const weiAmount = this.web3.utils.toWei(amount.toString(), 'either');
+
+        return this.contract.methods.withdraw(weiAmount).send({
+            from: this.account
+        });
+    }
+
+    onBalanceChange(callback) {
+        if (!this.contract) throw new Error('Not connected to contract');
+        this.contract.events.BalanceChanged({ fromBlock: 'latest' })
+        .on('data', event => callback(event.returnValues.newBalance))
+        .on('error', console.error);
+    } 
  }
