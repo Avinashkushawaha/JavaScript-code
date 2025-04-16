@@ -48,3 +48,5 @@ async function runClassification(){
         console.log('Classification results:', results);
     }
 }
+
+runClassification();
