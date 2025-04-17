@@ -71,5 +71,69 @@ class Synthesizer {
         osc.type = this.waveform;
         osc.frequency.value = this.noteToFrequency(note);
         gain.gain.value = 0;
+
+        osc.connect(gain);
+        gain.connect(this.masterGain);
+        osc.start();
+
+        const now = this.audioCtx.currentTime;
+        gain.gain.cancelScheduledValues(now);
+        gain.gain.setValueAtTime(0, now);
+        gain.gain.linearRampToValueAtTime(velocity, now + this.envelope.attack);
+
+        gain.gain.linearRampToValueAtTime(
+            velocity *this.envelope.attack + this.envelope.decay
+        );
+
+        this.oscillators.set(note, { osc, gain });
+    }
+    noteOff(note) {
+        if (!this.oscillators.has(note)) return;
+
+        const { osc, gain } = this.oscillators.get(note);
+        const now = this.audioCtx.currentTime;
+
+        gain.gain.cancelScheduledValues(now);
+        gain.gain.setValueAtTime(gain.gain.value, now);
+        gain.gain.linearRampToValueAtTime(0, now + this.envelope.release);
+
+        osc.stop(now + this.envelope.release);
+        this.oscillators.delete(note);
+    } 
+
+    noteToFrequency(note) {
+        return 440 * Math.pow(2, (note - 69) / 12);
+    }
+
+    setWaveform(type) {
+        this.waveform = type;
+        this.oscillators.forEach(( { osc }) => {
+            osc.type = type;
+        })
+    }
+
+    setDelayTime(time) {
+        this.delay.delayTime.value = time;
+    }
+
+    setReverbAmount(amount) {
+        this.reverb.gain.value = amount;
     }
 }
+
+const synth = new Synthesizer();
+
+synth.noteOn(60);
+synth.noteOn(64);
+synth.noteOn(67);
+
+synth.setWaveform('square');
+synth.setDelayTime(0.5);
+synth.setReverbAmount(0.4);
+
+setTimeout(() => {
+    synth.noteOff(60);
+    synth.noteOff(64);
+    synth.noteOff(67);
+
+}, 1000);
