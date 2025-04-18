@@ -54,7 +54,42 @@ class RealTimeDashboard {
         });
 
         if (buffer.length> this.maxDataPoints){
-            
+            buffer.shift();
         }
+        this.updateChart(update.metric);
+    }
+
+    createChart(metric) {
+        const chartId = `chart-${metric,replace(/\s+/g, '-').toLowerCase()}`;
+        const chartContainer = document.createElement('div');
+        chartContainer.className = 'chart';
+        chartContainer.id = chartId;
+        chartContainer.innerHTML = `<h3>${metric}</h3><canvas></canvas>`;
+
+        document.querySelector(`.charts-container`).appendChild(chartContainer);
+
+        const canvas = chartContainer.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: metric,
+                    data: [],
+                    borderColor:this.getRandomColor(),
+                    borderWidth: 2,
+                    fill: false
+                }]
+            },
+            Options: {
+                responsive: true,
+                scales: {
+                    
+                }
+            }
+        })
+
     }
 }
