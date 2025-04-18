@@ -86,10 +86,36 @@ class RealTimeDashboard {
             Options: {
                 responsive: true,
                 scales: {
-                    
+                    x: {
+                        type: 'time',
+                        time: {
+                            unit: 'second'
+                        }
+                    },
+                    y: {
+                        beginAtZero: false
+                    }
                 }
             }
-        })
+        });
+        this.charts.set(metric, chart);
+    }
+    updateChart(metric) {
+        const buffer = this.dataBuffers.get(metric);
+        const chart = this.charts.get(metric);
 
+        chart.datalabels = buffer.map(item => item.timestamp);
+        chart.data.datasets[0].data = buffer.map(item => item.value);
+        chart.update();
+    }
+
+    getRandomColor() {
+        return `#${Math.floor(Math.random()*16777215).toString(16)}`;
+    
     }
 }
+
+const dashboard = new RealTimeDashboard(
+    'wss://api.example.com/realtime',
+    'dashboard-container'
+);
