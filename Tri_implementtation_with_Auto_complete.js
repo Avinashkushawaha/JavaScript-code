@@ -64,6 +64,9 @@ dictionary.insert("app");
 dictionary.insert("application");
 dictionary.insert("banana");
 
-console.lo
+console.log(dictionary.search("app"));
+console.log(dictionary.search("apple"));
+console.log(dictionary.search("appl"));
+console.log(dictionary.startsWith("app"));
 
 
