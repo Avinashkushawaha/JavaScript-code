@@ -27,5 +27,21 @@ class BloomFilter {
             this.storage[index] = true;
         }
     }
-    
+    mightContain(item) {
+        for (const hashFunction of this.hashFunctions) {
+            const index = hashFunction(item.toString());
+            if (!this.storage[index]) {
+                return false;
+            }
+        }
+        return true; 
+    }
 }
+
+const filter = new BloomFilter();
+filter.add("apple");
+filter.add("banana");
+filter.add("orange");
+
+console.log(filter.mightContain("apple")); // true
+console.log(filter.mightContain("banana")); // true
