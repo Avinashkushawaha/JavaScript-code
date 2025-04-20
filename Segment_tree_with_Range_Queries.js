@@ -24,4 +24,31 @@ update(index, value) {
         pos >>= 1;
        }
     }
-}
+
+    query(left, right) {
+        let res = 0;
+        left += this.size;
+        right += this.size;
+
+        while (left <= right) {
+            if (left % 2 === 1) {
+                res += this.tree[left];
+                left++;
+            }
+            if (right % 2 === 0) {
+                res += this.tree[right];
+                right--;
+            }
+            left >>= 1;
+            right >>= 1;
+        }
+        return res;
+            }
+        }
+      
+        const arr = [1, 3, 5, 7, 9, 11];
+        const segTree = new SegmentTree(arr);
+        console.log(segTree.query(1, 3)); // Output: 15 (3 + 5 + 7)
+        segTree.update(1, 10); // Update index 1 to value 10
+        console.log(segTree.query(1, 3)); // Output: 22 (10 + 5 + 7)
+        console.log(segTree.query(0, 5)); // Output: 42 (1 + 10 + 5 + 7 + 9 + 11)
