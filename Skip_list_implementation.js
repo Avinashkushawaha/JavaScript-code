@@ -58,5 +58,58 @@ class SkipList {
         }
         return false; 
     }
+       delete(value) {
+        const update = new Array(this.maxLevel + 1).fill(null);
+        let current = this.header;
 
+        for (let i = this.level; i >= 0; i--) {
+            while (current.forward[i] && current.forward[i].value < value) {
+                current = current.forward[i];
+            }
+            update[i] = current;
+        }
+
+        current = current.forward[0];
+
+        if (current && current.value === value) {
+            for (let i = 0; i <= this.level; i++) {
+                if (update[i].forward[i] !== current) break;
+                update[i].forward[i] = current.forward[i];
+            }
+
+            while (this.level > 0 && this.header.forward[this.level] === null) {
+                this.level--;
+            }
+            return true; 
+        }
+        return false;
+    }
+
+    print() {
+        for (let i = this.level; i >= 0; i--) {
+            let node = this.header.forward[i];
+            let str = `Level ${i}: `;
+            while (node) {
+                str += `${node.value} `;
+                node = node.forward[i];
+            }
+            console.log(str);
+            }
+        }
+        }
+
+    const SkipList = new SkipList();
+    SkipList.insert(3);
+    SkipList.insert(6);
+    SkipList.insert(7);
+    SkipList.insert(9);
+    SkipList.insert(12);
     
+    
+    console.log(SkipList.search(19));
+    SkipList.delete(19);
+    console.log(SkipList.search(19));
+    SkipList.print();
+
+
+
