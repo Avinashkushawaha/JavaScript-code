@@ -91,4 +91,33 @@ _send(message) {
     });
 }
 
+onConnect(callback) {
+    this.connectionCallbacks.push(callback);
+    return this;
 }
+onMessage(callback) {
+    this.messageCallbacks.push(callback);
+    return this;
+}
+onError(callback) {
+    this.errorCallbacks.push(callback);
+    return this;
+}
+close(){
+    this.closeAll();
+}
+}
+
+const balancer = new WebSocketLoadBalancer([
+    'wss://server1.example.com',
+    'wss://server2.example.com',
+    'wss://server3.example.com'
+]);
+
+balancer 
+.onConnect(() => console.log('Connected to server'))
+.onMessage((message) => console.log('Received message:', message))
+.onError((error) => console.error('WebSocket error:', error))
+
+balancer.send('Hello, server!')
+balancer.send('Another message')
