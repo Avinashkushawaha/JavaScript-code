@@ -43,4 +43,16 @@ function reactive(obj) {
         }
     });
 }
-     
+    
+const state = reactive({
+    count: 0,
+    name: 'Reactive Proxy'
+});
+
+watchEffect(() => {
+    console.log(`Count: ${state.count}`);
+});
+
+state.count++; 
+state.count += 2; 
+state.name = 'Updated Name';
