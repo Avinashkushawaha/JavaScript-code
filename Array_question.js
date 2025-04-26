@@ -16,5 +16,10 @@ class CircularBuffer {
         this.tail = (this.tail + 1) % this.capacity;
         this.size++;
     }
-    
+     isFull() {
+        return this.size === this.capacity;
+     }
+    isEmpty() {
+        return this.size === 0;
+    }
 }
