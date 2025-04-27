@@ -18,4 +18,12 @@ class MinStack {
         }
         return val;
     }
+
+    top () {
+        return this.stack[this.stack.length - 1];
+    }
+
+    getMin() {
+        return this.minStack[this.minStack.length - 1];
+    }
 }
