@@ -23,4 +23,14 @@ class MinHeap {
         this.heap.push(value);
         this.heapifyUp();
     }
+
+    heapifyUp() {
+        let index = this.heap.length -1;
+        while (this.getParentIndex(index) >=0  && this.heap[this.getParentIndex(index)] > this.heap[index]) {
+         this.swap(this.getParentIndex(index), index);
+         index = this.getParentIndex(index);
+        }
+    }
+
+    
 }
