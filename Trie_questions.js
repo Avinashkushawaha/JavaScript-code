@@ -52,5 +52,15 @@ class Trie {
         return this._getAllWordsFromNode(node, prefix);
     }
 
-    _getAllWordsFromNode
+    _getAllWordsFromNode(node, prefix) {
+        let words = [];
+        if (node.isEndOfWord) {
+            words.push(prefix);
+        }
+        for (const[char, childNode] of Object.entries(node.children)) {
+            words = words.concat(this._getAllWordsFromNode(childNode, prefix + char));
+
+        }
+        return words;
+    }
 }
