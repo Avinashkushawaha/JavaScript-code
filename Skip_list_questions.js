@@ -57,5 +57,30 @@ class SkipList {
         }
         return false;
     }
+    delete(value) {
+        const update = new Array(this.maxLevel + 1).fill(null);
+        let current = this.header;
+
+        for (let i = this.level; i >= 0; i--) {
+            while (current.forward[i] && current.forward[i].value < value) {
+                current = current.forward[i];
+            }
+            update[i] = current;
+        }
+       
+        current = current.forward[0];
+
+        if (current && current.value === value) {
+            for (let i = 0; i <= this.level; i++) {
+                if (update[i].forward[i] !== current) break;
+                update[i].forward[i] = current.forward[i];
+            }
+            while (this.level > 0 && ! this.header.forward[this.level]){
+                this.level--;
+            }
+            return true;
+        }
+        return false;
+    }
 
 }
