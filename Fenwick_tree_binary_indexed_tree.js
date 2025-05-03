@@ -11,6 +11,19 @@ class FenwickTree {
             index += index & -index;
         }
     }
+   
+    query(index) {
+        index++;
+        let sum = 0;
+        while (index > 0) {
+            sum += this.tree[index];
+            index -= index & -index;
+        }
+        return sum;
+    }
 
-    
+    rangeQuery(left, right) {
+        return this.query(right) - this.query(left - 1);
+    }
+
 }
