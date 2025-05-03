@@ -21,6 +21,34 @@ class SegmentTree {
     }
 
     update(index, value) {
-        
+        let pos = this.size + index;
+        this.tree[pos] = value;
+        pos >>= 1;
+
+        while (pos >= 1) {
+            this.tree[pos] = this.tree[2 * pos] + this.tree[2 * pos + 1];
+            pos >>= 1;
+        }
+    }
+
+    queryRange(left, right) {
+        let res = 0;
+        left += this.size;
+        right += this.size;
+
+        while (left <= right) {
+            if (left % 2 === 1) {
+                res += this.tree[left];
+                left++;
+            }
+            if (right % 2 === 0) {
+                res += this.tree[right];
+                left--;
+            }
+            left >>= 1;
+            right >>= 1;
+        }
+
+        return res;
     }
 }
